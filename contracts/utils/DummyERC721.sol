@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0-or-later 
+// SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -10,14 +10,16 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  * @author JohnnyTime (https://smartcontractshacking.com)
  */
 contract DummyERC721 is ERC721, Ownable {
-
     uint256 maxSupply;
     uint256 public currentSupply = 0;
-    
-    constructor(string memory _name, string memory _symbol, uint256 _maxSupply)
-     ERC721(_name, _symbol) {
+
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        uint256 _maxSupply
+    ) ERC721(_name, _symbol) {
         maxSupply = _maxSupply;
-     }
+    }
 
     function mint() public returns (uint256) {
         uint256 tokenId = _newTokenId();
@@ -32,7 +34,7 @@ contract DummyERC721 is ERC721, Ownable {
     }
 
     function mintBulk(uint256 _amount) public onlyOwner {
-        for(uint256 i = 0; i < _amount; i++) {
+        for (uint256 i = 0; i < _amount; i++) {
             mint();
         }
     }
